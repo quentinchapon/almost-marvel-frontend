@@ -1,0 +1,28 @@
+.modal-wrapper {
+  background-color: rgba(255, 255, 255, 0.886);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 50vw;
+  background-color: red;
+  position: absolute;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+  }
+}

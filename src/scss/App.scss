@@ -37,8 +37,9 @@ p {
 .over-title {
   font-family: "AvenirBook";
   letter-spacing: 0.3rem;
-  font-size: 14px;
+  font-size: 1.5vw;
   margin-bottom: 5px;
+  color: grey;
 }
 
 h1 {
@@ -96,6 +97,7 @@ h4 {
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 100px;
   box-shadow: 0 3px 26px #28474e29;
@@ -117,6 +119,18 @@ header {
   }
 }
 
+.header-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-right ul {
+  display: flex;
+  flex-direction: row;
+}
+
 .isLoading .logo {
   margin-left: 30px;
 
@@ -134,7 +148,8 @@ header {
 }
 
 //NAV
-nav {
+nav,
+.header-right {
   font-family: "AvenirBook";
   margin-left: 90px;
   ul {
@@ -277,17 +292,21 @@ nav ul li:hover:before {
 
   .comics-list {
     display: grid;
-    grid-template-columns: repeat(3, 40%);
-    flex-direction: row;
-    width: 80%;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 20px;
+    column-gap: 20px;
+    /* flex-direction: row; */
+    width: 100%;
 
     .comic {
       display: flex;
       flex-direction: column;
+      margin-bottom: 30px;
     }
 
     img {
-      width: 90px;
+      width: 100%;
+      max-height: 71%;
     }
   }
 

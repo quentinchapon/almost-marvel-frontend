@@ -8,8 +8,6 @@ const Panel = ({
   setCharacterDatas,
   setComicDatas,
 }) => {
-  console.log("Character comic datas ==>", characterComicDatas);
-  console.log("Comics datas ==>", comicDatas);
   return panelVisibility ? (
     <div className="panel-wrapper">
       <div

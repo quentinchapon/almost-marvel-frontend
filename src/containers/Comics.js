@@ -8,8 +8,6 @@ const Comics = ({
   setComicDatas,
   characterDatas,
 }) => {
-  console.log("Character datas ==>", characterDatas);
-  console.log("Comics datas ==>", comicDatas);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   const [search, setSearch] = useState("");
