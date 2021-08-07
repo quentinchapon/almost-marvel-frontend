@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ setModalType, setModalVisibility }) => {
   return (
     <header>
       <div className="header-left">
@@ -29,8 +29,23 @@ const Header = () => {
       </div>
       <div className="header-right">
         <ul>
-          <li>Sign Up</li>
-          <li>Sign In</li>
+          <li
+            onClick={() => {
+              setModalType("signup");
+              setModalVisibility(true);
+            }}
+          >
+            Sign Up
+          </li>
+
+          <li
+            onClick={() => {
+              setModalType("signin");
+              setModalVisibility(true);
+            }}
+          >
+            Sign In
+          </li>
         </ul>
       </div>
     </header>

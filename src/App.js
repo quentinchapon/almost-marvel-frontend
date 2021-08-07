@@ -19,18 +19,31 @@ function App() {
   //Toggle side panel visibility
   const [panelVisibility, setPanelVisibility] = useState(false);
 
-  //Toggle side panel visibility
-  const [ModalVisibility, setModalVisibility] = useState(false);
+  //Toggle modal visibility
+  const [modalVisibility, setModalVisibility] = useState(false);
 
-  //Set datas from character or comic on click on it
+  //Set modal type : sign in or sign up
+  const [modalType, setModalType] = useState("");
+
+  //Set datas for comics for one character
   const [characterComicDatas, setCharacterComicDatas] = useState();
 
+  // Set datas for comic or character on panel opening
   const [characterDatas, setCharacterDatas] = useState();
   const [comicDatas, setComicDatas] = useState();
 
+  //Set token when user sign in
+  const [userToken, setUserToken] = useState();
+
   return (
     <Router>
-      <Modal />
+      <Modal
+        modalType={modalType}
+        setModalType={setModalType}
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
+        setUserToken={setUserToken}
+      />
       <Panel
         panelVisibility={panelVisibility}
         setPanelVisibility={setPanelVisibility}
@@ -41,7 +54,12 @@ function App() {
         setCharacterDatas={setCharacterDatas}
         characterDatas={characterDatas}
       />
-      <Header />
+      <Header
+        modalType={modalType}
+        setModalType={setModalType}
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
+      />
       <Switch>
         <Route exact path="/">
           <Home></Home>
