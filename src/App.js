@@ -27,7 +27,7 @@ function App() {
   //Set modal type : sign in or sign up
   const [modalType, setModalType] = useState("");
 
-  //Set panel type : item or fav
+  //Set panel type : item or collection
   const [panelType, setPanelType] = useState("");
 
   //Set datas for comics for one character
@@ -80,6 +80,7 @@ function App() {
         setUserToken={setUserToken}
       />
       <Panel
+        userToken={userToken}
         setPanelType={setPanelType}
         panelType={panelType}
         panelVisibility={panelVisibility}
