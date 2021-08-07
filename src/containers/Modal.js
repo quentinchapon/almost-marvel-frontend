@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const Modal = ({
   username,
+  usernameHeader,
+  setUsernameHeader,
   setUsername,
   modalType,
   modalVisibility,
@@ -47,14 +49,15 @@ const Modal = ({
         user
       );
       if (response.data.token) {
-        console.log("loggué");
-        setUsername(response.data.username);
-        // Création du cookie avec le token
-        setUserToken(response.data.token);
         setModalVisibility(false);
+        console.log("loggué");
+        setUsernameHeader(response.data.username);
+        // Cookie creation
+        setUserToken(response.data.token);
+        console.log(usernameHeader);
       }
-    } catch {
-      console.log("Pas loggué");
+    } catch (error) {
+      console.log({ message: error.message });
     }
   };
 

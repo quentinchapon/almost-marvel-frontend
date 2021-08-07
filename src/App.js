@@ -38,7 +38,7 @@ function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
 
   // Set username when user is connected
-  const [username, setUsername] = useState();
+  const [usernameHeader, setUsernameHeader] = useState();
 
   // Cookie creation
   const setUser = (token) => {
@@ -67,6 +67,8 @@ function App() {
       />
 
       <Modal
+        usernameHeader={usernameHeader}
+        setUsernameHeader={setUsernameHeader}
         setUser={setUser}
         modalType={modalType}
         setModalType={setModalType}
@@ -85,9 +87,10 @@ function App() {
         characterDatas={characterDatas}
       />
       <Header
-        username={username}
-        setUsername={setUsername}
+        usernameHeader={usernameHeader}
+        setUsernameHeader={setUsernameHeader}
         userToken={userToken}
+        setUserToken={setUserToken}
         modalType={modalType}
         setModalType={setModalType}
         modalVisibility={modalVisibility}
@@ -100,6 +103,7 @@ function App() {
 
         <Route path="/characters">
           <Characters
+            userToken={userToken}
             comicDatas={comicDatas}
             setComicDatas={setComicDatas}
             panelVisibility={panelVisibility}

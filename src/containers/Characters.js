@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Characters = ({
+  userToken,
   panelVisibility,
   setPanelVisibility,
   setComicDatas,
@@ -106,6 +107,31 @@ const Characters = ({
                 ></img>
               </div>
               <h2>{character.name}</h2>
+              <button
+                className="add-fav"
+                value="Add to favorites"
+                onClick={async () => {
+                  try {
+                    //Create object with fav datas
+                    const favData = {
+                      token: userToken,
+                      fav_img:
+                        character.thumbnail.path +
+                        "." +
+                        character.thumbnail.extension,
+                      fav_name: character.name,
+                    };
+                    //Send fav datas to BDD
+                    const response = await axios.post(
+                      `https://almost-marvel.herokuapp.com/fav`,
+                      favData
+                    );
+                    console.log(response.data);
+                  } catch (error) {}
+                }}
+              >
+                Add to favorites
+              </button>
             </div>
           );
         })}

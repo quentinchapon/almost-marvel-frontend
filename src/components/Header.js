@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import logout from "../img/logout.svg";
 
-const Header = ({ username, userToken, setModalType, setModalVisibility }) => {
+const Header = ({
+  usernameHeader,
+  setUsernameHeader,
+  username,
+  userToken,
+  setUserToken,
+  setModalType,
+  setModalVisibility,
+}) => {
   return (
     <header>
       <div className="header-left">
@@ -30,8 +38,15 @@ const Header = ({ username, userToken, setModalType, setModalVisibility }) => {
       </div>
       <div className="header-right">
         {userToken ? (
-          <div className="logout">
-            <p>Connected as{username}</p>
+          <div
+            className="logout"
+            onClick={() => {
+              setUserToken(null);
+            }}
+          >
+            <p>
+              {usernameHeader} | <span>Logout</span>
+            </p>
             <img src={logout}></img>
           </div>
         ) : (
