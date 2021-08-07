@@ -2,6 +2,7 @@ import "./scss/App.scss";
 import "./scss/Modal.scss";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AnimatedCursor from "react-animated-cursor";
 
 // Composants import
 import Header from "./components/Header";
@@ -14,6 +15,8 @@ import Comics from "./containers/Comics";
 import Modal from "./containers/Modal";
 
 function App() {
+  // Custom cursor
+
   // States declaration
 
   //Toggle side panel visibility
@@ -37,6 +40,16 @@ function App() {
 
   return (
     <Router>
+      <AnimatedCursor
+        innerSize={10}
+        outerSize={8}
+        color="236, 22, 32"
+        outerAlpha={0.2}
+        innerScale={1}
+        outerScale={5}
+        trailingSpeed={6}
+      />
+
       <Modal
         modalType={modalType}
         setModalType={setModalType}

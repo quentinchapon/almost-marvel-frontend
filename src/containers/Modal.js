@@ -62,6 +62,15 @@ const Modal = ({
     return (
       <div className="modal-wrapper">
         <div className="modal">
+          <div
+            className="close-button"
+            onClick={() => {
+              setModalVisibility(false);
+            }}
+          >
+            <div className="close-line"></div>
+            <div className="close-line"></div>
+          </div>
           <span>Sign up</span>
           <form action="" onSubmit={handleSubmitSignup}>
             <label htmlFor="username">Username</label>
@@ -103,25 +112,19 @@ const Modal = ({
     // Sign IN
   } else if (modalVisibility === true && modalType === "signin") {
     return (
-      <div
-        className="modal-wrapper"
-        onClick={() => {
-          setModalVisibility(false);
-        }}
-      >
+      <div className="modal-wrapper">
         <div className="modal">
+          <div
+            className="close-button"
+            onClick={() => {
+              setModalVisibility(false);
+            }}
+          >
+            <div className="close-line"></div>
+            <div className="close-line"></div>
+          </div>
           <span>Sign in</span>
           <form action="" onSubmit={handleSubmitSignin}>
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              id="username"
-              type="text"
-              onChange={(event) => {
-                setUsername(event.target.value);
-              }}
-            />
-
             <label htmlFor="email">E-mail</label>
             <input
               name="email"

@@ -1,3 +1,5 @@
+@import "variables";
+
 .modal-wrapper {
   background-color: rgba(255, 255, 255, 0.886);
   width: 100vw;
@@ -20,11 +22,38 @@
   max-height: 500px;
   background-color: white;
   position: absolute;
+  box-shadow: 0 0 30px #480f0f1b;
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 60%;
+  }
+  .close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: $white;
+  }
+  .close-line:nth-child(1) {
+    position: absolute;
+    width: 25px;
+    height: 1px;
+    background-color: $marvel-red;
+    transform: rotate(45deg);
+  }
+
+  .close-line:nth-child(2) {
+    position: absolute;
+    width: 25px;
+    height: 1px;
+    background-color: $marvel-red;
+    transform: rotate(-45deg);
   }
 }
