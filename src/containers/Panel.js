@@ -2,13 +2,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 const Panel = ({
-  userToken,
+  userId,
   panelType,
   panelVisibility,
   setPanelVisibility,
   comicDatas,
   characterDatas,
-  setCharacterComicDatas,
   characterComicDatas,
   setCharacterDatas,
   setComicDatas,
@@ -20,8 +19,7 @@ const Panel = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://almost-marvel.herokuapp.com/getcollection`,
-          { token: userToken }
+          `https://almost-marvel.herokuapp.com/getcollection?token=${userId}`
         );
 
         setCollectionData(response.data);
@@ -31,7 +29,7 @@ const Panel = ({
       }
     };
     fetchData();
-  }, [userToken]);
+  }, [userId]);
 
   if (panelVisibility === true && panelType === "item") {
     return (
@@ -101,7 +99,17 @@ const Panel = ({
 
           <div className="comic-list">
             {collectionData.map((collectionItem, index) => {
-              console.log("Collection ===>", collectionItem);
+              return (
+                <div className="comics-list">
+                  <div className="comic" key={collectionItem.collection_name}>
+                    <img
+                      src={collectionItem.collection_img}
+                      alt={collectionItem.collection_name}
+                    />
+                    <p>{collectionItem.collection_name}</p>
+                  </div>
+                </div>
+              );
             })}
           </div>
         </div>

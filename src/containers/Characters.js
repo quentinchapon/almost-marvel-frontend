@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Characters = ({
+  userId,
   setPanelType,
-  userToken,
   panelVisibility,
   setPanelVisibility,
   setComicDatas,
@@ -116,7 +116,7 @@ const Characters = ({
                   try {
                     //Create object with collection datas
                     const collectionData = {
-                      token: userToken,
+                      user_id: userId,
                       collection_img:
                         character.thumbnail.path +
                         "." +

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const Modal = ({
+  setUserId,
   username,
   usernameHeader,
   setUsernameHeader,
@@ -50,8 +51,9 @@ const Modal = ({
       );
       if (response.data.token) {
         setModalVisibility(false);
-        console.log("loggué");
+        console.log(`Info user ==>`, response.data);
         setUsernameHeader(response.data.username);
+        setUserId(response.data.username);
         // Cookie creation
         setUserToken(response.data.token);
         console.log(usernameHeader);

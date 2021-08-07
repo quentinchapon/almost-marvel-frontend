@@ -43,6 +43,9 @@ function App() {
   // Set username when user is connected
   const [usernameHeader, setUsernameHeader] = useState();
 
+  // Set userId for collection recuperation
+  const [userId, setUserId] = useState();
+
   // Cookie creation
   const setUser = (token) => {
     if (token) {
@@ -80,6 +83,7 @@ function App() {
         setUserToken={setUserToken}
       />
       <Panel
+        setUserId={setUserId}
         userToken={userToken}
         setPanelType={setPanelType}
         panelType={panelType}
@@ -111,8 +115,8 @@ function App() {
 
         <Route path="/characters">
           <Characters
+            userId={userId}
             setPanelType={setPanelType}
-            userToken={userToken}
             comicDatas={comicDatas}
             setComicDatas={setComicDatas}
             panelVisibility={panelVisibility}
