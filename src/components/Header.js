@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import logout from "../img/logout.svg";
 
-const Header = ({ setModalType, setModalVisibility }) => {
+const Header = ({ username, userToken, setModalType, setModalVisibility }) => {
   return (
     <header>
       <div className="header-left">
@@ -28,25 +29,32 @@ const Header = ({ setModalType, setModalVisibility }) => {
         </nav>
       </div>
       <div className="header-right">
-        <ul>
-          <li
-            onClick={() => {
-              setModalType("signup");
-              setModalVisibility(true);
-            }}
-          >
-            Sign Up
-          </li>
+        {userToken ? (
+          <div className="logout">
+            <p>Connected as{username}</p>
+            <img src={logout}></img>
+          </div>
+        ) : (
+          <ul>
+            <li
+              onClick={() => {
+                setModalType("signup");
+                setModalVisibility(true);
+              }}
+            >
+              Sign Up
+            </li>
 
-          <li
-            onClick={() => {
-              setModalType("signin");
-              setModalVisibility(true);
-            }}
-          >
-            Sign In
-          </li>
-        </ul>
+            <li
+              onClick={() => {
+                setModalType("signin");
+                setModalVisibility(true);
+              }}
+            >
+              Sign In
+            </li>
+          </ul>
+        )}
       </div>
     </header>
   );

@@ -3,6 +3,7 @@ import "./scss/Modal.scss";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor";
+import Cookies from "js-cookie";
 
 // Composants import
 import Header from "./components/Header";
@@ -15,8 +16,6 @@ import Comics from "./containers/Comics";
 import Modal from "./containers/Modal";
 
 function App() {
-  // Custom cursor
-
   // States declaration
 
   //Toggle side panel visibility
@@ -36,7 +35,24 @@ function App() {
   const [comicDatas, setComicDatas] = useState();
 
   //Set token when user sign in
-  const [userToken, setUserToken] = useState();
+  const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+
+  // Set username when user is connected
+  const [username, setUsername] = useState();
+
+  // Cookie creation
+  const setUser = (token) => {
+    if (token) {
+      Cookies.set("userToken", token, {
+        expires: 7,
+      });
+
+      setUserToken(token);
+    } else {
+      Cookies.remove("userToken");
+      setUserToken(null);
+    }
+  };
 
   return (
     <Router>
@@ -51,6 +67,7 @@ function App() {
       />
 
       <Modal
+        setUser={setUser}
         modalType={modalType}
         setModalType={setModalType}
         modalVisibility={modalVisibility}
@@ -68,6 +85,9 @@ function App() {
         characterDatas={characterDatas}
       />
       <Header
+        username={username}
+        setUsername={setUsername}
+        userToken={userToken}
         modalType={modalType}
         setModalType={setModalType}
         modalVisibility={modalVisibility}

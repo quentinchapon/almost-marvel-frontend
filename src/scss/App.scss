@@ -122,9 +122,12 @@ header {
   align-items: center;
 }
 
-.header-right ul {
-  display: flex;
-  flex-direction: row;
+.header-right {
+  margin-right: 30px;
+  ul {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .isLoading .logo {

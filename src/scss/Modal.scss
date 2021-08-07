@@ -57,3 +57,13 @@
     transform: rotate(-45deg);
   }
 }
+
+.logout {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 30px;
+    margin-left: 10px;
+  }
+}

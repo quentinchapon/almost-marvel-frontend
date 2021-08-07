@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 
 const Modal = ({
+  username,
+  setUsername,
   modalType,
   modalVisibility,
   setModalVisibility,
   setUserToken,
 }) => {
-  const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -46,7 +47,7 @@ const Modal = ({
         user
       );
       if (response.data.token) {
-        console.log("logué");
+        console.log("loggué");
         setUsername(response.data.username);
         // Création du cookie avec le token
         setUserToken(response.data.token);
@@ -145,7 +146,7 @@ const Modal = ({
               }}
             />
 
-            <input type="submit" value="Sign up" />
+            <input type="submit" value="Sign in" />
           </form>
         </div>
       </div>
