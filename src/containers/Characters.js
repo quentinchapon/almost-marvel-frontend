@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Characters = ({
+  setPanelType,
   userToken,
   panelVisibility,
   setPanelVisibility,
@@ -74,6 +75,7 @@ const Characters = ({
               className="item"
               key={character._id}
               onClick={async () => {
+                setPanelType("item");
                 // Get comics for current character
                 try {
                   const response = await axios.get(
@@ -108,29 +110,29 @@ const Characters = ({
               </div>
               <h2>{character.name}</h2>
               <button
-                className="add-fav"
-                value="Add to favorites"
+                className="add-collection"
+                value="Add to collection"
                 onClick={async () => {
                   try {
-                    //Create object with fav datas
-                    const favData = {
+                    //Create object with collection datas
+                    const collectionData = {
                       token: userToken,
-                      fav_img:
+                      collection_img:
                         character.thumbnail.path +
                         "." +
                         character.thumbnail.extension,
-                      fav_name: character.name,
+                      collection_name: character.name,
                     };
-                    //Send fav datas to BDD
+                    //Send collection datas to BDD
                     const response = await axios.post(
-                      `https://almost-marvel.herokuapp.com/fav`,
-                      favData
+                      `https://almost-marvel.herokuapp.com/collection`,
+                      collectionData
                     );
                     console.log(response.data);
                   } catch (error) {}
                 }}
               >
-                Add to favorites
+                Add to collection
               </button>
             </div>
           );

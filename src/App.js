@@ -27,6 +27,9 @@ function App() {
   //Set modal type : sign in or sign up
   const [modalType, setModalType] = useState("");
 
+  //Set panel type : item or fav
+  const [panelType, setPanelType] = useState("");
+
   //Set datas for comics for one character
   const [characterComicDatas, setCharacterComicDatas] = useState();
 
@@ -77,6 +80,8 @@ function App() {
         setUserToken={setUserToken}
       />
       <Panel
+        setPanelType={setPanelType}
+        panelType={panelType}
         panelVisibility={panelVisibility}
         setPanelVisibility={setPanelVisibility}
         characterComicDatas={characterComicDatas}
@@ -87,6 +92,8 @@ function App() {
         characterDatas={characterDatas}
       />
       <Header
+        setPanelVisibility={setPanelVisibility}
+        setPanelType={setPanelType}
         usernameHeader={usernameHeader}
         setUsernameHeader={setUsernameHeader}
         userToken={userToken}
@@ -103,6 +110,7 @@ function App() {
 
         <Route path="/characters">
           <Characters
+            setPanelType={setPanelType}
             userToken={userToken}
             comicDatas={comicDatas}
             setComicDatas={setComicDatas}
@@ -117,6 +125,7 @@ function App() {
 
         <Route path="/comics">
           <Comics
+            setPanelType={setPanelType}
             panelVisibility={panelVisibility}
             setPanelVisibility={setPanelVisibility}
             characterComicDatas={characterComicDatas}

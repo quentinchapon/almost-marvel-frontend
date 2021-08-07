@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logout from "../img/logout.svg";
 
 const Header = ({
+  setPanelType,
   usernameHeader,
   setUsernameHeader,
   username,
@@ -9,6 +10,7 @@ const Header = ({
   setUserToken,
   setModalType,
   setModalVisibility,
+  setPanelVisibility,
 }) => {
   return (
     <header>
@@ -24,15 +26,38 @@ const Header = ({
         </Link>
         <nav>
           <ul>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <li>Home</li>
-            </Link>
             <Link to="/characters" style={{ textDecoration: "none" }}>
-              <li>Characters</li>
+              <li
+                onClick={() => {
+                  setPanelType("item");
+                }}
+              >
+                Characters
+              </li>
             </Link>
             <Link to="/comics" style={{ textDecoration: "none" }}>
-              <li>Comics</li>
+              <li
+                onClick={() => {
+                  setPanelType("item");
+                }}
+              >
+                Comics
+              </li>
             </Link>
+
+            <li
+              onClick={() => {
+                if (userToken) {
+                  setPanelType("collection");
+                  setPanelVisibility(true);
+                } else {
+                  setModalVisibility(true);
+                  setModalType("signin");
+                }
+              }}
+            >
+              My collection
+            </li>
           </ul>
         </nav>
       </div>
@@ -47,7 +72,7 @@ const Header = ({
             <p>
               {usernameHeader} | <span>Logout</span>
             </p>
-            <img src={logout}></img>
+            <img src={logout} alt="logout"></img>
           </div>
         ) : (
           <ul>

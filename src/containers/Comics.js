@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Comics = ({
+  setPanelType,
   panelVisibility,
   setPanelVisibility,
   comicDatas,
@@ -70,6 +71,7 @@ const Comics = ({
               className="item"
               key={comic._id}
               onClick={() => {
+                setPanelType("item");
                 setPanelVisibility(true);
                 setComicDatas({
                   image: comic.thumbnail.path + "." + comic.thumbnail.extension,
