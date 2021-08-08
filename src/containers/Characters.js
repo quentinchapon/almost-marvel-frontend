@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import noImg from "../img/no-img.png";
-import add from "../img/add.svg";
 
 const Characters = ({
   scrollToTop,
@@ -128,6 +127,7 @@ const Characters = ({
                       `https://almost-marvel.herokuapp.com/collection`,
                       collectionData
                     );
+                    console.log(response.data);
                     setPanelType("collection");
                   } catch (error) {}
                 }}
