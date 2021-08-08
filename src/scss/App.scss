@@ -313,9 +313,8 @@ nav ul li:hover:before {
 }
 
 .items-list {
-  animation-duration: 0.5s;
   animation-name: items;
-  animation-delay: 0s;
+  animation-duration: 2s;
   display: grid;
   grid-template-columns: repeat(3, 30%);
   column-gap: 5vmin;
@@ -511,8 +510,20 @@ nav ul li:hover:before {
   left: -16vmax;
 }
 
+/* APPARITION filters bar */
+@keyframes filters {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
 //Filter bar
 .filters-bar {
+  animation-name: filters;
+  animation-duration: 2s;
   margin-bottom: 40px;
   .input-main {
     width: 20vw;
