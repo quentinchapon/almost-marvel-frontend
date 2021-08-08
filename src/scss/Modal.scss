@@ -11,18 +11,35 @@
   align-items: center;
 }
 
+@keyframes modal {
+  from {
+    margin-bottom: -100px;
+    opacity: 0%;
+  }
+
+  to {
+    margin-bottom: 0px;
+    opacity: 100%;
+  }
+}
+
 .modal {
+  animation-duration: 0.7s;
+  animation-name: modal;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50vw;
   max-width: 500px;
+  min-width: 380px;
+  min-height: 420px;
   height: 50vw;
   max-height: 500px;
   background-color: white;
   position: absolute;
   box-shadow: 0 0 30px #480f0f1b;
+
   form {
     display: flex;
     flex-direction: column;
@@ -30,31 +47,24 @@
     align-items: center;
     width: 60%;
   }
-  .close-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    background-color: $white;
-  }
-  .close-line:nth-child(1) {
-    position: absolute;
-    width: 25px;
-    height: 1px;
-    background-color: $marvel-red;
-    transform: rotate(45deg);
+
+  label {
+    font-family: "AvenirBook";
+    font-size: 14px;
+    letter-spacing: 0;
+    align-self: flex-start;
   }
 
-  .close-line:nth-child(2) {
-    position: absolute;
-    width: 25px;
-    height: 1px;
-    background-color: $marvel-red;
-    transform: rotate(-45deg);
+  .input-main {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  h3 {
+    margin-bottom: 30px;
+  }
+
+  .main-button {
+    margin-bottom: 20px;
   }
 }
 

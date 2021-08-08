@@ -13,13 +13,12 @@ const Panel = ({
   setComicDatas,
 }) => {
   const [collectionData, setCollectionData] = useState();
-
   //Import collection datas
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://almost-marvel.herokuapp.com/getcollection?token=${userId}`
+          `https://almost-marvel.herokuapp.com/getcollection?user_id=${userId}`
         );
 
         setCollectionData(response.data);
@@ -43,6 +42,15 @@ const Panel = ({
           }}
         ></div>
         <div className="panel-right">
+          <div
+            className="close-button"
+            onClick={() => {
+              setPanelVisibility(false);
+            }}
+          >
+            <div className="close-line"></div>
+            <div className="close-line"></div>
+          </div>
           <img
             className="character-image"
             src={
@@ -84,6 +92,7 @@ const Panel = ({
       </div>
     );
   } else if (panelVisibility === true && panelType === "collection") {
+    console.log(`Collection data ===>`, collectionData);
     return (
       <div className="panel-wrapper">
         <div
@@ -97,7 +106,7 @@ const Panel = ({
         <div className="panel-right">
           <h3>My collection</h3>
 
-          <div className="comic-list">
+          <div className="comics-list">
             {collectionData.map((collectionItem, index) => {
               return (
                 <div className="comics-list">

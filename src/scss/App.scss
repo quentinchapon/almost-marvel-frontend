@@ -38,7 +38,23 @@ p {
   color: grey;
 }
 
+/* APPARITION H1 */
+@keyframes h1 {
+  from {
+    letter-spacing: 3vw;
+
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 3.5vw;
+  }
+}
+
 h1 {
+  animation-name: h1;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
   text-align: center;
   font-family: "Poppins", sans-serif;
   font-size: 5.625vw;
@@ -47,6 +63,7 @@ h1 {
   letter-spacing: 3.5vw;
   margin-bottom: 60px;
   margin-top: 10px;
+  margin-right: -30px;
 
   span {
     color: $marvel-red;
@@ -78,8 +95,59 @@ h4 {
   margin: 10px 0 20px 0;
 }
 
+// HOME
+
+@keyframes entries {
+  from {
+    filter: grayscale(100%);
+  }
+
+  to {
+    filter: grayscale(0%);
+  }
+}
+
+.entries {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8vmax;
+
+  :hover {
+    animation-duration: 0.7s;
+    animation-name: entries;
+    animation-fill-mode: forwards;
+  }
+  img {
+    width: 20vw;
+    filter: grayscale(100%);
+  }
+
+  span {
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5vmax;
+    font-weight: 500;
+    margin: 10px 0 15px 0;
+  }
+
+  p {
+    color: grey;
+  }
+
+  .arrow {
+    width: 100px;
+    margin: 10px 0 20px 0;
+  }
+  .entry-characters,
+  .entry-comics {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /* CHARACTERS LIST */
 .wrapper {
+  position: relative;
   margin-right: auto;
   margin-left: auto;
   max-width: 1280px;
@@ -90,7 +158,8 @@ h4 {
 }
 
 // HEADER
-header {
+header,
+footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -130,6 +199,54 @@ header {
   }
 }
 
+//FOOTER
+footer {
+  bottom: 0;
+  width: 100%;
+  margin-top: 60px;
+}
+
+// LOADER
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.arc {
+  animation-name: loader;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  border: 3px solid $marvel-red;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  border-top-color: transparent;
+  transform: rotate(0deg);
+  margin-right: 8px;
+}
+
+.almost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -25px;
+}
+
+.isLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+}
+
 .isLoading .logo {
   margin-left: 30px;
 
@@ -150,7 +267,7 @@ header {
 nav,
 .header-right {
   font-family: "AvenirBook";
-  margin-left: 90px;
+  margin-left: 60px;
   ul {
     display: flex;
     li {
@@ -185,11 +302,25 @@ nav ul li:hover:before {
 
 // ITEMS (CHARACTERS AND COMICS)
 
+/* APPARITION items */
+@keyframes items {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
 .items-list {
+  animation-duration: 0.5s;
+  animation-name: items;
+  animation-delay: 0s;
   display: grid;
   grid-template-columns: repeat(3, 30%);
   column-gap: 5vmin;
   row-gap: 30px;
+  margin: 0 30px 0 30px;
 
   .image-container {
     position: relative;
@@ -229,6 +360,7 @@ nav ul li:hover:before {
     align-self: start;
     margin-left: 13px;
     font-size: 1.3rem;
+    line-height: 24px;
   }
 
   p {
@@ -274,7 +406,6 @@ nav ul li:hover:before {
   padding: 50px;
   transition-property: margin;
   transition-duration: 4s;
-  overflow-y: scroll;
 
   h3 {
     margin: 30px 0 30px 0;
@@ -294,17 +425,41 @@ nav ul li:hover:before {
     column-gap: 20px;
     /* flex-direction: row; */
     width: 100%;
+    overflow-y: scroll;
+    padding-right: 10px;
 
     .comic {
       display: flex;
       flex-direction: column;
       margin-bottom: 30px;
+      p {
+        margin-top: 10px;
+      }
     }
 
     img {
       width: 100%;
       max-height: 71%;
     }
+  }
+
+  .comics-list::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .comics-list::-webkit-scrollbar-track {
+    background: lightgrey;
+    border-radius: 30px;
+  }
+
+  .comics-list::-webkit-scrollbar-thumb {
+    background: $marvel-red;
+    border-radius: 30px;
+    padding-left: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
   .character-image {
@@ -336,25 +491,211 @@ nav ul li:hover:before {
 // HOME
 .hero-home {
   width: 35vmax;
+  max-width: 700px;
   position: absolute;
-  top: 200px;
-  left: -130px;
+  top: 150px;
+  left: -16vmax;
 }
 
 //Filter bar
 .filters-bar {
   margin-bottom: 40px;
+  .input-main {
+    width: 20vw;
+    max-width: 300px;
+    min-width: 150px;
+  }
 }
-.search,
-.select {
+.input-main {
   font-family: "AvenirBook";
   font-size: 14px;
-  width: 200px;
+
   border: none;
   border-bottom: 1px solid #707070;
   padding: 0 10px 10px 0;
+  outline: none;
+}
+
+form input:focus {
+  border-bottom: 1px solid $marvel-red;
 }
 
 .search::placeholder {
   color: #c7c7c7;
+}
+
+// BUTTONS & LINKS
+
+.main-button {
+  height: 40px;
+  color: white;
+  background-color: $marvel-red;
+  font-family: "AvenirBook";
+  font-size: 14px;
+  width: 200px;
+  border: none;
+}
+
+.link {
+  color: $marvel-red;
+  border-bottom: 1px solid $marvel-red;
+}
+
+.close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background-color: $white;
+}
+
+.panel-right .close-button {
+  left: -40px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.close-line:nth-child(1) {
+  position: absolute;
+  width: 25px;
+  height: 1px;
+  background-color: $marvel-red;
+  transform: rotate(45deg);
+}
+
+.close-line:nth-child(2) {
+  position: absolute;
+  width: 25px;
+  height: 1px;
+  background-color: $marvel-red;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 1000px) {
+  .hero-home {
+    display: none;
+  }
+
+  .panel-right {
+    width: 70%;
+  }
+}
+
+@media (max-width: 620px) {
+  .entries {
+    display: flex;
+    flex-direction: column;
+    grid-column-gap: 30px;
+    row-gap: 10px;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  .titles {
+    margin-top: 30px;
+  }
+
+  .entries img {
+    width: 30vw;
+    filter: grayscale(100%);
+  }
+
+  .panel-right {
+    width: 85%;
+
+    .comics-list {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .items-list {
+    grid-template-columns: repeat(2, 47%);
+  }
+}
+
+@media (max-width: 320px) {
+  .items-list {
+    grid-template-columns: repeat(1, 100%);
+  }
+  h1 {
+    margin-bottom: 40px;
+  }
+
+  .titles {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+}
+
+//PAGINATION
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+.pagination-button-active {
+  color: $marvel-red;
+  background: transparent;
+  border: none;
+  font-family: "AvenirBook";
+  font-size: 18px;
+}
+
+.pagination-button-inactive {
+  color: lightgrey;
+  background: transparent;
+  border: none;
+  font-family: "AvenirBook";
+  font-size: 18px;
+}
+
+.vert-separator {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 1px;
+  height: 15px;
+  background-color: lightgrey;
+}
+
+@media (min-width: 1650px) {
+  .hero-home {
+    left: -23vmax;
+  }
+}
+
+@media (max-width: 910px) {
+  header {
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-around;
+    .header-left {
+      flex-direction: column;
+    }
+
+    .header-right {
+      font-size: 14px;
+      margin-right: 0;
+    }
+  }
+  nav {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .logo {
+    margin-top: 20px;
+  }
 }

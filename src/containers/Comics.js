@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Loader from "../components/Loader";
 
 const Comics = ({
   setPanelType,
@@ -8,17 +9,19 @@ const Comics = ({
   comicDatas,
   setComicDatas,
   characterDatas,
+  scrollToTop,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   const [search, setSearch] = useState("");
+  const [skip, setSkip] = useState(0);
 
   //Comics datas import
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://almost-marvel.herokuapp.com/comics?title=${search}`
+          `https://almost-marvel.herokuapp.com/comics?title=${search}&skip=${skip}`
         );
 
         setData(response.data);
@@ -28,18 +31,10 @@ const Comics = ({
       }
     };
     fetchData();
-  }, [search]);
+  }, [search, skip]);
 
   return isLoading ? (
-    <div className="isLoading">
-      <div className="logo">
-        <span>
-          ALM<span>O</span>ST
-          <br />
-          MARVEL
-        </span>
-      </div>
-    </div>
+    <Loader />
   ) : (
     <div className="wrapper">
       <div className="titles">
@@ -50,7 +45,7 @@ const Comics = ({
       <div className="filters-bar">
         <form action="">
           <input
-            className="search"
+            className="input-main"
             type="text"
             placeholder="Search item"
             onChange={(event) => {
@@ -95,6 +90,33 @@ const Comics = ({
             </div>
           );
         })}
+      </div>
+      <div className="pagination">
+        <button
+          className={
+            skip <= 0
+              ? "pagination-button-inactive"
+              : "pagination-button-active"
+          }
+          onClick={() => {
+            if (skip !== 0) {
+              setSkip(skip - 30);
+              scrollToTop();
+            }
+          }}
+        >
+          &#60; Previous
+        </button>
+        <div className="vert-separator"></div>
+        <button
+          className="pagination-button-active"
+          onClick={() => {
+            setSkip(skip + 30);
+            scrollToTop();
+          }}
+        >
+          Next &#62;
+        </button>
       </div>
     </div>
   );

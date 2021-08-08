@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 
 // Composants import
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Panel from "./containers/Panel";
 
 //Containers import
@@ -43,8 +44,16 @@ function App() {
   // Set username when user is connected
   const [usernameHeader, setUsernameHeader] = useState();
 
-  // Set userId for collection recuperation
+  // Set userId for collection fetching
   const [userId, setUserId] = useState();
+
+  //Scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // Cookie creation
   const setUser = (token) => {
@@ -73,6 +82,8 @@ function App() {
       />
 
       <Modal
+        userId={userId}
+        setUserId={setUserId}
         usernameHeader={usernameHeader}
         setUsernameHeader={setUsernameHeader}
         setUser={setUser}
@@ -80,9 +91,9 @@ function App() {
         setModalType={setModalType}
         modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
-        setUserToken={setUserToken}
       />
       <Panel
+        userId={userId}
         setUserId={setUserId}
         userToken={userToken}
         setPanelType={setPanelType}
@@ -96,6 +107,7 @@ function App() {
         setCharacterDatas={setCharacterDatas}
         characterDatas={characterDatas}
       />
+
       <Header
         setPanelVisibility={setPanelVisibility}
         setPanelType={setPanelType}
@@ -108,6 +120,7 @@ function App() {
         modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
       />
+
       <Switch>
         <Route exact path="/">
           <Home></Home>
@@ -115,6 +128,7 @@ function App() {
 
         <Route path="/characters">
           <Characters
+            scrollToTop={scrollToTop}
             userId={userId}
             setPanelType={setPanelType}
             comicDatas={comicDatas}
@@ -130,6 +144,7 @@ function App() {
 
         <Route path="/comics">
           <Comics
+            scrollToTop={scrollToTop}
             setPanelType={setPanelType}
             panelVisibility={panelVisibility}
             setPanelVisibility={setPanelVisibility}
@@ -140,6 +155,7 @@ function App() {
           ></Comics>
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

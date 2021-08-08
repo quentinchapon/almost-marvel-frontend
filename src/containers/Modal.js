@@ -2,18 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 
 const Modal = ({
+  userId,
   setUserId,
-  username,
   usernameHeader,
   setUsernameHeader,
-  setUsername,
   modalType,
+  setModalType,
   modalVisibility,
   setModalVisibility,
-  setUserToken,
+  setUser,
 }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [username, setUsername] = useState();
 
   const handleSubmitSignup = async (event) => {
     event.preventDefault();
@@ -30,7 +31,11 @@ const Modal = ({
 
       // Si réponse avec token on envoi token dans la fonction setUser (dans App.js) qui va créer le cookie
       if (response.data.token) {
-        setUserToken(response.data.token);
+        setUserId(response.data._id);
+        setUser(response.data.token);
+        setUsernameHeader(response.data.username);
+
+        setModalVisibility(false);
       }
     } catch (error) {
       console.log({ message: error.message });
@@ -49,14 +54,13 @@ const Modal = ({
         `https://almost-marvel.herokuapp.com/signin`,
         user
       );
+
       if (response.data.token) {
         setModalVisibility(false);
-        console.log(`Info user ==>`, response.data);
+        setUserId(response.data._id);
         setUsernameHeader(response.data.username);
-        setUserId(response.data.username);
         // Cookie creation
-        setUserToken(response.data.token);
-        console.log(usernameHeader);
+        setUser(response.data.token);
       }
     } catch (error) {
       console.log({ message: error.message });
@@ -77,10 +81,12 @@ const Modal = ({
             <div className="close-line"></div>
             <div className="close-line"></div>
           </div>
-          <span>Sign up</span>
+          <h3>Sign up</h3>
           <form action="" onSubmit={handleSubmitSignup}>
-            <label htmlFor="username">Username</label>
+            {/* <label htmlFor="username">Username</label> */}
             <input
+              placeholder="Username"
+              className="input-main"
               name="username"
               id="username"
               type="text"
@@ -89,8 +95,10 @@ const Modal = ({
               }}
             />
 
-            <label htmlFor="email">E-mail</label>
+            {/* <label htmlFor="email">E-mail</label> */}
             <input
+              placeholder="Adresse e-mail"
+              className="input-main"
               name="email"
               id="email"
               type="email"
@@ -99,8 +107,10 @@ const Modal = ({
               }}
             />
 
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <input
+              placeholder="Password"
+              className="input-main"
               name="password"
               id="password"
               type="password"
@@ -109,7 +119,15 @@ const Modal = ({
               }}
             />
 
-            <input type="submit" value="Sign up" />
+            <input className="main-button" type="submit" value="Sign up" />
+            <p
+              className="link"
+              onClick={() => {
+                setModalType("signin");
+              }}
+            >
+              Already a member ? Sign in !
+            </p>
           </form>
         </div>
       </div>
@@ -121,7 +139,7 @@ const Modal = ({
       <div className="modal-wrapper">
         <div className="modal">
           <div
-            className="close-button"
+            className="close-button "
             onClick={() => {
               setModalVisibility(false);
             }}
@@ -129,10 +147,12 @@ const Modal = ({
             <div className="close-line"></div>
             <div className="close-line"></div>
           </div>
-          <span>Sign in</span>
+          <h3>Sign in</h3>
           <form action="" onSubmit={handleSubmitSignin}>
-            <label htmlFor="email">E-mail</label>
+            {/* <label htmlFor="email">E-mail</label> */}
             <input
+              placeholder="Adresse e-mail"
+              className="input-main"
               name="email"
               id="email"
               type="email"
@@ -141,8 +161,10 @@ const Modal = ({
               }}
             />
 
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <input
+              placeholder="Password"
+              className="input-main"
               name="password"
               id="password"
               type="password"
@@ -151,7 +173,15 @@ const Modal = ({
               }}
             />
 
-            <input type="submit" value="Sign in" />
+            <input className="main-button" type="submit" value="Sign in" />
+            <p
+              className="link"
+              onClick={() => {
+                setModalType("signup");
+              }}
+            >
+              Not a member yet ? Sign up !
+            </p>
           </form>
         </div>
       </div>

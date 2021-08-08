@@ -66,7 +66,7 @@ const Header = ({
           <div
             className="logout"
             onClick={() => {
-              setUserToken(null);
+              setUserToken();
             }}
           >
             <p>
