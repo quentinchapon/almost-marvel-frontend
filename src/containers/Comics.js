@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
+import noImg from "../img/no-img.png";
 
 const Comics = ({
   setPanelType,
@@ -77,7 +78,12 @@ const Comics = ({
             >
               <div className="image-container">
                 <img
-                  src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                  src={
+                    comic.thumbnail.path !==
+                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+                      ? comic.thumbnail.path + "." + comic.thumbnail.extension
+                      : noImg
+                  }
                   alt={comic.title}
                 ></img>
               </div>

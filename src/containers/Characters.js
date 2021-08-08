@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
+import noImg from "../img/no-img.png";
 
 const Characters = ({
   scrollToTop,
@@ -96,9 +97,12 @@ const Characters = ({
               <div className="image-container">
                 <img
                   src={
-                    character.thumbnail.path +
-                    "." +
-                    character.thumbnail.extension
+                    character.thumbnail.path !==
+                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+                      ? character.thumbnail.path +
+                        "." +
+                        character.thumbnail.extension
+                      : noImg
                   }
                   alt={character.name}
                 ></img>

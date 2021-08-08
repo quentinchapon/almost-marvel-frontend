@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
-import Hulk from "../img/hulk.png";
-import entryComics from "../img/entry-comics.png";
-import entryCharacters from "../img/entry-characters.png";
-import arrowRight from "../img/Groupe 1.svg";
+import Hulk from "../img/hulk_opt.png";
+import Captain from "../img/captain_opt.png";
+import Widow from "../img/widow.png";
+import Quicksilver from "../img/quicksilver.png";
+import Starlord from "../img/starlord.png";
+
+import entryComics from "../img/entry-comics.jpg";
+import entryCharacters from "../img/entry-characters.jpg";
+import arrowRight from "../img/arrow-right.png";
 
 const Home = () => {
+  const heroImg = [Hulk, Captain, Widow, Quicksilver, Starlord];
   return (
     <div className="wrapper">
       <h1 className="h1-home">
@@ -41,7 +47,11 @@ const Home = () => {
           </div>
         </Link>
       </div>
-      <img className="hero-home" src={Hulk} alt="Hulk"></img>
+      <img
+        className="hero-home"
+        src={heroImg[Math.floor(Math.random() * 5)]}
+        alt="Hero"
+      ></img>
     </div>
   );
 };
