@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import noImg from "../img/no-img.png";
+import add from "../img/add.svg";
 
 const Characters = ({
   scrollToTop,
@@ -127,11 +128,15 @@ const Characters = ({
                       `https://almost-marvel.herokuapp.com/collection`,
                       collectionData
                     );
-                    console.log(response.data);
+                    setPanelType("collection");
                   } catch (error) {}
                 }}
               >
-                Add to collection
+                <div className="add-button">
+                  <div className="line"></div>
+                  <div className="line"></div>
+                </div>
+                <span>Add to collection</span>
               </div>
             </div>
           );

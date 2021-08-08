@@ -357,13 +357,11 @@ nav ul li:hover:before {
   h2 {
     margin-top: 15px;
     align-self: start;
-    margin-left: 13px;
     font-size: 1.3rem;
     line-height: 24px;
   }
 
   p {
-    margin-left: 13px;
     margin-top: 20px;
   }
 }
@@ -726,5 +724,44 @@ form input:focus {
 
   .p-home {
     margin-top: 40px;
+  }
+}
+
+.add-collection {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  color: $marvel-red;
+  background: transparent;
+  border: none;
+
+  span {
+    color: black;
+    margin-left: 10px;
+    font-family: "AvenirBook";
+    font-size: 14px;
+  }
+}
+
+.add-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $marvel-red;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+
+  .line {
+    height: 11px;
+    width: 1px;
+    background-color: $marvel-red;
+    margin-left: -1px;
+  }
+
+  :nth-child(2) {
+    transform: rotate(90deg);
   }
 }
