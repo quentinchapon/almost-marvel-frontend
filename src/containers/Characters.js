@@ -19,7 +19,6 @@ const Characters = ({
   const [data, setData] = useState();
   const [search, setSearch] = useState("");
   const [skip, setSkip] = useState(0);
-  console.log("User ID ==>", userId);
   // Comics for one character
   //Characters datas import
   useEffect(() => {
