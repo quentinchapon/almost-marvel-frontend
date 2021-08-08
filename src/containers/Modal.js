@@ -15,6 +15,7 @@ const Modal = ({
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [username, setUsername] = useState();
+  const [prompt, setPrompt] = useState({ state: false, message: "" });
 
   const handleSubmitSignup = async (event) => {
     event.preventDefault();
@@ -34,11 +35,18 @@ const Modal = ({
         setUserId(response.data._id);
         setUser(response.data.token);
         setUsernameHeader(response.data.username);
-
-        setModalVisibility(false);
+        setPrompt({
+          state: true,
+          message: "You account has been created !",
+          class: "prompt-valid",
+        });
       }
     } catch (error) {
-      console.log({ message: error.message });
+      setPrompt({
+        state: true,
+        message: "This e-mail adresse is already in use",
+        class: "prompt-invalid",
+      });
     }
   };
 
@@ -59,11 +67,14 @@ const Modal = ({
         setModalVisibility(false);
         setUserId(response.data._id);
         setUsernameHeader(response.data.username);
-        // Cookie creation
         setUser(response.data.token);
       }
     } catch (error) {
-      console.log({ message: error.message });
+      setPrompt({
+        state: true,
+        message: "E-mail or password are incorrect, try again",
+        class: "prompt-invalid",
+      });
     }
   };
 
@@ -76,6 +87,7 @@ const Modal = ({
             className="close-button"
             onClick={() => {
               setModalVisibility(false);
+              setPrompt({ state: false, message: "" });
             }}
           >
             <div className="close-line"></div>
@@ -128,6 +140,9 @@ const Modal = ({
             >
               Already a member ? Sign in !
             </p>
+            <p className={prompt.class}>
+              {prompt.state === true && prompt.message}
+            </p>
           </form>
         </div>
       </div>
@@ -142,6 +157,7 @@ const Modal = ({
             className="close-button "
             onClick={() => {
               setModalVisibility(false);
+              setPrompt({ state: false, message: "" });
             }}
           >
             <div className="close-line"></div>
@@ -181,6 +197,9 @@ const Modal = ({
               }}
             >
               Not a member yet ? Sign up !
+            </p>
+            <p className={prompt.class}>
+              {prompt.state === true && prompt.message}
             </p>
           </form>
         </div>

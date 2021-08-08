@@ -40,6 +40,19 @@
   position: absolute;
   box-shadow: 0 0 30px #480f0f1b;
 
+  .link {
+    margin-bottom: 10px;
+  }
+
+  .prompt-valid {
+    color: rgb(57, 114, 0);
+  }
+
+  .prompt-invalid {
+    color: rgba(255, 126, 14, 0.927);
+    text-align: center;
+  }
+
   form {
     display: flex;
     flex-direction: column;
