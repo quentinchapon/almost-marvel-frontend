@@ -680,14 +680,14 @@ form input:focus {
   header {
     flex-direction: column;
     height: 150px;
-    justify-content: space-around;
+    justify-content: center;
     .header-left {
       flex-direction: column;
     }
 
     .header-right {
       font-size: 14px;
-      margin-right: 0;
+      margin-top: 10px;
     }
   }
   nav {
@@ -695,7 +695,14 @@ form input:focus {
     font-size: 14px;
   }
 
+  .h1-home {
+    display: none;
+  }
+
+  .p-home {
+    margin-top: 40px;
+  }
+
   .logo {
-    margin-top: 20px;
   }
 }
