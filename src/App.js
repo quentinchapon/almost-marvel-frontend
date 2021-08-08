@@ -2,7 +2,7 @@ import "./scss/App.scss";
 import "./scss/Modal.scss";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AnimatedCursor from "react-animated-cursor";
+// import AnimatedCursor from "react-animated-cursor";
 import Cookies from "js-cookie";
 
 // Composants import
@@ -71,7 +71,7 @@ function App() {
 
   return (
     <Router>
-      <AnimatedCursor
+      {/* <AnimatedCursor
         innerSize={10}
         outerSize={8}
         color="236, 22, 32"
@@ -79,7 +79,7 @@ function App() {
         innerScale={1}
         outerScale={5}
         trailingSpeed={6}
-      />
+      /> */}
 
       <Modal
         userId={userId}
