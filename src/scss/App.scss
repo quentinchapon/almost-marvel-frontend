@@ -46,7 +46,7 @@ p {
     opacity: 0;
   }
   to {
-    opacity: 100%;
+    opacity: 1;
     letter-spacing: 3.5vw;
   }
 }
@@ -383,8 +383,7 @@ nav ul li:hover:before {
 
 .panel-right {
   z-index: 4;
-  animation-name: panelIn;
-  animation-duration: 0.3s;
+
   animation-timing-function: ease-out;
   display: flex;
   flex-direction: column;
