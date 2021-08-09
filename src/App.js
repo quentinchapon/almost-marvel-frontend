@@ -109,6 +109,7 @@ function App() {
       />
 
       <Header
+        setUser={setUser}
         setPanelVisibility={setPanelVisibility}
         setPanelType={setPanelType}
         usernameHeader={usernameHeader}

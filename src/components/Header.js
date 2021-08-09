@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logout from "../img/logout.svg";
 
 const Header = ({
+  setUser,
   setPanelType,
   usernameHeader,
   setUsernameHeader,
@@ -66,7 +67,7 @@ const Header = ({
           <div
             className="logout"
             onClick={() => {
-              setUserToken();
+              setUser();
             }}
           >
             <p>
