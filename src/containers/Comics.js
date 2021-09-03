@@ -87,12 +87,15 @@ const Comics = ({
                   alt={comic.title}
                 ></img>
               </div>
-              <h2>{comic.title}</h2>
-              <p>
-                Dignissim enim sit amet venenatis urna cursus eget nunc
-                scelerisque. Velit laoreet id donec ultrices tincidunt arcu. Sit
-                amet nisl purus in.
-              </p>
+              <div className="comics-titles">
+                <h2>{comic.title}</h2>
+                <p>
+                  {" "}
+                  {comic.description
+                    ? comic.description
+                    : "No description available"}
+                </p>
+              </div>
             </div>
           );
         })}

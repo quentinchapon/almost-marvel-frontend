@@ -108,6 +108,7 @@ const Panel = ({
 
           <div className="comics-list">
             {collectionData.map((collectionItem, index) => {
+              console.log("Collection data ===>", collectionData);
               return (
                 <div className="comics-list">
                   <div className="comic" key={collectionItem.collection_name}>

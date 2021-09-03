@@ -2,25 +2,22 @@ import axios from "axios";
 import { useState } from "react";
 
 const Modal = ({
-  userId,
-  setUserId,
-  usernameHeader,
-  setUsernameHeader,
   modalType,
   setModalType,
   modalVisibility,
   setModalVisibility,
-  setUser,
+  setCookies,
+  setToken,
 }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [username, setUsername] = useState();
+  const [newUsername, setNewUsername] = useState();
   const [prompt, setPrompt] = useState({ state: false, message: "" });
 
   const handleSubmitSignup = async (event) => {
     event.preventDefault();
     const newUser = {
-      username: username,
+      username: newUsername,
       email: email,
       password: password,
     };
@@ -32,9 +29,16 @@ const Modal = ({
 
       // Si réponse avec token on envoi token dans la fonction setUser (dans App.js) qui va créer le cookie
       if (response.data.token) {
-        setUserId(response.data._id);
-        setUser(response.data.token);
-        setUsernameHeader(response.data.username);
+        setToken(true);
+        const cookieStr = (
+          response.data.token +
+          "," +
+          response.data._id +
+          "," +
+          response.data.username
+        ).split(",");
+        console.log("cookie STR ==>", cookieStr[0]);
+        setCookies(cookieStr);
         setPrompt({
           state: true,
           message: "You account has been created !",
@@ -65,9 +69,16 @@ const Modal = ({
 
       if (response.data.token) {
         setModalVisibility(false);
-        setUserId(response.data._id);
-        setUsernameHeader(response.data.username);
-        setUser(response.data.token);
+        setToken(true);
+        const cookieStr = (
+          response.data.token +
+          "," +
+          response.data._id +
+          "," +
+          response.data.username
+        ).split(",");
+        console.log("cookie STR ==>", cookieStr[0]);
+        setCookies(cookieStr);
       }
     } catch (error) {
       setPrompt({
@@ -103,7 +114,7 @@ const Modal = ({
               id="username"
               type="text"
               onChange={(event) => {
-                setUsername(event.target.value);
+                setNewUsername(event.target.value);
               }}
             />
 

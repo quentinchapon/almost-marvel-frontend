@@ -38,14 +38,17 @@ function App() {
   const [characterDatas, setCharacterDatas] = useState();
   const [comicDatas, setComicDatas] = useState();
 
-  //Set token when user sign in
-  const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  //Set cookie when user sign in
+  const [cookie, setCookie] = useState();
 
-  // Set username when user is connected
-  const [usernameHeader, setUsernameHeader] = useState();
+  //Set token
+  const [token, setToken] = useState(false);
 
   // Set userId for collection fetching
   const [userId, setUserId] = useState();
+
+  // Set username for header username
+  const [username, setUsername] = useState();
 
   //Scroll to top
   const scrollToTop = () => {
@@ -56,16 +59,21 @@ function App() {
   };
 
   // Cookie creation
-  const setUser = (token) => {
-    if (token) {
-      Cookies.set("userToken", token, {
+  const setCookies = (arg) => {
+    if (arg) {
+      Cookies.set("token", arg[0], {
         expires: 7,
       });
-
-      setUserToken(token);
+      Cookies.set("userID", arg[1], {
+        expires: 7,
+      });
+      Cookies.set("username", arg[2], {
+        expires: 7,
+      });
+      // createCookie(cookie);
     } else {
-      Cookies.remove("userToken");
-      setUserToken(null);
+      Cookies.remove("Cookie");
+      setCookie(null);
     }
   };
 
@@ -82,20 +90,20 @@ function App() {
       />
 
       <Modal
-        userId={userId}
+        setCookies={setCookies}
+        token={token}
+        setToken={setToken}
+        setUsername={setUsername}
         setUserId={setUserId}
-        usernameHeader={usernameHeader}
-        setUsernameHeader={setUsernameHeader}
-        setUser={setUser}
+        userId={userId}
+        username={username}
+        // createCookie={createCookie}
         modalType={modalType}
         setModalType={setModalType}
         modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
       />
       <Panel
-        userId={userId}
-        setUserId={setUserId}
-        userToken={userToken}
         setPanelType={setPanelType}
         panelType={panelType}
         panelVisibility={panelVisibility}
@@ -109,13 +117,11 @@ function App() {
       />
 
       <Header
-        setUser={setUser}
+        token={token}
+        setToken={setToken}
+        setCookie={setCookie}
         setPanelVisibility={setPanelVisibility}
         setPanelType={setPanelType}
-        usernameHeader={usernameHeader}
-        setUsernameHeader={setUsernameHeader}
-        userToken={userToken}
-        setUserToken={setUserToken}
         modalType={modalType}
         setModalType={setModalType}
         modalVisibility={modalVisibility}
@@ -130,7 +136,6 @@ function App() {
         <Route path="/characters">
           <Characters
             scrollToTop={scrollToTop}
-            userId={userId}
             setPanelType={setPanelType}
             comicDatas={comicDatas}
             setComicDatas={setComicDatas}

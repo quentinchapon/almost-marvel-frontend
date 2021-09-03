@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 import logout from "../img/logout.svg";
+import Cookies from "js-cookie";
 
 const Header = ({
-  setUser,
+  setToken,
   setPanelType,
-  usernameHeader,
-  setUsernameHeader,
   username,
-  userToken,
-  setUserToken,
+  token,
   setModalType,
   setModalVisibility,
   setPanelVisibility,
@@ -48,7 +46,7 @@ const Header = ({
 
             <li
               onClick={() => {
-                if (userToken) {
+                if (token) {
                   setPanelType("collection");
                   setPanelVisibility(true);
                 } else {
@@ -63,15 +61,18 @@ const Header = ({
         </nav>
       </div>
       <div className="header-right">
-        {userToken ? (
+        {token === true ? (
           <div
             className="logout"
             onClick={() => {
-              setUser();
+              Cookies.remove("username");
+              Cookies.remove("token");
+              Cookies.remove("userID");
+              setToken(false);
             }}
           >
             <p>
-              {usernameHeader} | <span>Logout</span>
+              {Cookies.get("username")} | <span>Logout</span>
             </p>
             <img src={logout} alt="logout"></img>
           </div>
