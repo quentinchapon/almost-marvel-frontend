@@ -381,6 +381,7 @@ nav ul li:hover:before {
     font-size: 1.3rem;
     line-height: 28px;
     max-height: 56px;
+    height: 60px;
   }
 
   p {
@@ -425,6 +426,8 @@ nav ul li:hover:before {
   padding: 50px;
   transition-property: margin;
   transition-duration: 4s;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   h3 {
     margin: 30px 0 30px 0;
@@ -600,8 +603,8 @@ form input:focus {
 }
 
 .panel-right .close-button {
-  left: -40px;
-  top: 50%;
+  left: 5px;
+  top: 5px;
   width: 40px;
   height: 40px;
 }
@@ -768,30 +771,44 @@ form input:focus {
 
   span {
     color: black;
-    margin-left: 10px;
     font-family: "AvenirBook";
-    font-size: 14px;
+    font-size: 8px;
+  }
+
+  :hover {
+    background-color: $marvel-red;
+  }
+
+  :hover span {
+    color: white;
+  }
+
+  :hover .plus {
+    background-color: white;
   }
 }
 
 .add-button {
+  padding: 5px 10px 5px 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border: 1px solid $marvel-red;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-
-  .line {
-    height: 11px;
-    width: 1px;
-    background-color: $marvel-red;
-    margin-left: -1px;
-  }
+  height: 10px;
+  border-radius: 100px;
 
   :nth-child(2) {
     transform: rotate(90deg);
+    margin-left: -1px;
   }
+  span {
+    margin-left: 6px;
+  }
+}
+
+.plus {
+  height: 7px;
+  width: 1px;
+  background-color: $marvel-red;
 }

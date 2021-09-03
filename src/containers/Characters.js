@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import noImg from "../img/no-img.png";
@@ -66,76 +67,82 @@ const Characters = ({
       <div className="items-list">
         {data.results.map((character, index) => {
           return (
-            <div
-              className="item"
-              key={character._id}
-              onClick={async () => {
-                setPanelType("item");
-                // Get comics for current character
-                try {
-                  const response = await axios.get(
-                    `https://almost-marvel.herokuapp.com/comics/${character._id}`
-                  );
+            <div className="item-main">
+              <div
+                className="item"
+                key={character._id}
+                onClick={async () => {
+                  setPanelType("item");
+                  // Get comics for current character
+                  try {
+                    const response = await axios.get(
+                      `https://almost-marvel.herokuapp.com/comics/${character._id}`
+                    );
 
-                  setCharacterComicDatas(response.data.comics);
-                  setCharacterDatas({
-                    image:
-                      character.thumbnail.path +
-                      "." +
-                      character.thumbnail.extension,
-                    title: character.name,
-                    description: character.description,
-                  });
-
-                  setPanelVisibility(true);
-                } catch (error) {
-                  console.log(error.message);
-                }
-              }}
-            >
-              <div className="image-container">
-                <img
-                  src={
-                    character.thumbnail.path !==
-                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
-                      ? character.thumbnail.path +
+                    setCharacterComicDatas(response.data.comics);
+                    setCharacterDatas({
+                      image:
+                        character.thumbnail.path +
                         "." +
-                        character.thumbnail.extension
-                      : noImg
+                        character.thumbnail.extension,
+                      title: character.name,
+                      description: character.description,
+                    });
+
+                    setPanelVisibility(true);
+                  } catch (error) {
+                    console.log(error.message);
                   }
-                  alt={character.name}
-                ></img>
+                }}
+              >
+                <div className="image-container">
+                  <img
+                    src={
+                      character.thumbnail.path !==
+                      "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
+                        ? character.thumbnail.path +
+                          "." +
+                          character.thumbnail.extension
+                        : noImg
+                    }
+                    alt={character.name}
+                  ></img>
+                </div>
+                <h2>{character.name}</h2>
               </div>
-              <h2>{character.name}</h2>
               <div
                 className="add-collection"
                 value="Add to collection"
                 onClick={async () => {
-                  try {
-                    //Create object with collection datas
-                    const collectionData = {
-                      user_id: userId,
-                      collection_img:
-                        character.thumbnail.path +
-                        "." +
-                        character.thumbnail.extension,
-                      collection_name: character.name,
-                    };
-                    //Send collection datas to BDD
-                    const response = await axios.post(
-                      `https://almost-marvel.herokuapp.com/collection`,
-                      collectionData
-                    );
-                    console.log(response.data);
-                    setPanelType("collection");
-                  } catch (error) {}
+                  if (Cookies.get("userID")) {
+                    try {
+                      //Create object with collection datas
+                      const collectionData = {
+                        user_id: Cookies.get("userID"),
+                        collection_img:
+                          character.thumbnail.path +
+                          "." +
+                          character.thumbnail.extension,
+                        collection_name: character.name,
+                      };
+                      //Send collection datas to BDD
+                      const response = await axios.post(
+                        `https://almost-marvel.herokuapp.com/collection`,
+                        collectionData
+                      );
+                      console.log("Collection response ====>", response.data);
+                      setPanelType("collection");
+                      setPanelVisibility(true);
+                    } catch (error) {}
+                  }
                 }}
               >
                 <div className="add-button">
-                  <div className="line"></div>
-                  <div className="line"></div>
+                  <div className="plus"></div>
+                  <div className="plus"></div>
+
+                  <span>Add to collection</span>
                 </div>
-                <span>Add to collection</span>
               </div>
             </div>
           );

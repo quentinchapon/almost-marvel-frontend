@@ -46,7 +46,7 @@ const Header = ({
 
             <li
               onClick={() => {
-                if (token) {
+                if (token === true) {
                   setPanelType("collection");
                   setPanelVisibility(true);
                 } else {

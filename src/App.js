@@ -103,6 +103,7 @@ function App() {
         modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
       />
+
       <Panel
         setPanelType={setPanelType}
         panelType={panelType}
