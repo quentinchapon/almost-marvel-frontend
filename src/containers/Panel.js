@@ -58,16 +58,6 @@ const Panel = ({
               <div className="close-line"></div>
             </div>
             <img
-              onClick={async () => {
-                // Delete item
-                try {
-                  await axios.delete(
-                    `https://almost-marvel.herokuapp.com/collection/delete?collection_name=${collectionData.name}`
-                  );
-                } catch (error) {
-                  console.log(error.message);
-                }
-              }}
               className="character-image"
               src={
                 characterDatas !== undefined
@@ -133,6 +123,16 @@ const Panel = ({
                   <div className="comics-list">
                     <div className="comic" key={collectionItem.collection_name}>
                       <img
+                        onClick={async () => {
+                          // Delete item
+                          try {
+                            await axios.delete(
+                              `https://almost-marvel.herokuapp.com/collection/delete?collection_name=${collectionItem.collection_name}`
+                            );
+                          } catch (error) {
+                            console.log(error.message);
+                          }
+                        }}
                         src={collectionItem.collection_img}
                         alt={collectionItem.collection_name}
                       />
