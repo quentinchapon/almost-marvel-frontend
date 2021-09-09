@@ -31,6 +31,7 @@ const Characters = ({
 
         setData(response.data);
         setIsLoading(false);
+        console.log("Dataaaaaa ====>", data);
       } catch (error) {
         console.log(error.message);
       }
@@ -46,7 +47,6 @@ const Characters = ({
         <span className="over-title">Browse</span>
         <h1>CHARACTERS</h1>
       </div>
-
       <div className="filters-bar">
         <form action="">
           <input
@@ -63,9 +63,8 @@ const Characters = ({
           </select> */}
         </form>
       </div>
-
       <div className="items-list">
-        {data.results.map((character, index) => {
+        {data.results.map((character) => {
           return (
             <div className="item-main">
               <div
@@ -148,6 +147,7 @@ const Characters = ({
           );
         })}
       </div>
+
       <div className="pagination">
         <button
           className={
