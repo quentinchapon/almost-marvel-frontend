@@ -20,7 +20,6 @@ p {
 }
 .p-home {
   text-align: center;
-  text-justify: auto;
   width: 50%;
   margin-bottom: 40px;
 }
@@ -185,8 +184,8 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
   box-shadow: 0 3px 26px #28474e29;
+  background-color: white;
 
   .logo {
     margin-left: 30px;
@@ -203,6 +202,13 @@ footer {
       color: $marvel-red;
     }
   }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 100px;
 }
 
 .header-left {
@@ -222,6 +228,7 @@ footer {
 
 //FOOTER
 footer {
+  height: 75px;
   bottom: 0;
   width: 100%;
   margin-top: 60px;
@@ -392,7 +399,7 @@ nav ul li:hover:before {
 // PANEL
 
 .panel-wrapper {
-  z-index: 3;
+  z-index: 300;
   display: flex;
   position: fixed;
   width: 100vw;

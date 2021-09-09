@@ -16,6 +16,8 @@ const Panel = ({
   setComicDatas,
 }) => {
   const [collectionData, setCollectionData] = useState();
+  const [isRemoved, setIsRemoved] = useState(false);
+
   //Import collection datas
   useEffect(() => {
     const fetchData = async () => {
@@ -27,14 +29,14 @@ const Panel = ({
         );
 
         setCollectionData(response.data);
-        console.log("Collection Data ===>", collectionData);
+        console.log("Collection Dataaaa", collectionData.length);
         // setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [panelVisibility]);
+  }, [panelVisibility, isRemoved]);
 
   if (panelVisibility === true && panelType === "item") {
     return (
@@ -116,7 +118,7 @@ const Panel = ({
           <div className="panel-right">
             <h3>My collection</h3>
 
-            {collectionData !== undefined ? (
+            {collectionData.length !== 0 ? (
               <div className="collection-list">
                 {collectionData.map((collectionItem, index) => {
                   return (
@@ -139,6 +141,7 @@ const Panel = ({
                               await axios.delete(
                                 `https://almost-marvel.herokuapp.com/collection/delete?collection_name=${collectionItem.collection_name}`
                               );
+                              setIsRemoved(!isRemoved);
                             } catch (error) {
                               console.log(error.message);
                             }
