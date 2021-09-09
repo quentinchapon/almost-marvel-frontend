@@ -116,11 +116,10 @@ const Panel = ({
           <div className="panel-right">
             <h3>My collection</h3>
 
-            <div className="comics-list">
+            <div className="collection-list">
               {collectionData.map((collectionItem, index) => {
-                console.log("Collection data ===>", collectionData);
                 return (
-                  <div className="comics-list">
+                  <div>
                     <div className="comic" key={collectionItem.collection_name}>
                       <img
                         onClick={async () => {
