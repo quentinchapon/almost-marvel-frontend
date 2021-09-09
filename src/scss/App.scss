@@ -440,9 +440,10 @@ nav ul li:hover:before {
     margin-bottom: 40px;
   }
 
-  .comics-list {
+  .comics-list,
+  .collection-list {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 33%);
     grid-column-gap: 20px;
     column-gap: 20px;
     /* flex-direction: row; */
@@ -463,6 +464,16 @@ nav ul li:hover:before {
       width: 100%;
       max-height: 71%;
       background-image: url("../img/no-img.png");
+    }
+  }
+  .collection {
+    margin-bottom: 40px;
+  }
+  .collection-list {
+    img {
+      z-index: 1;
+      height: 200px;
+      object-fit: cover;
     }
   }
 

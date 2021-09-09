@@ -27,6 +27,7 @@ const Panel = ({
         );
 
         setCollectionData(response.data);
+        console.log("Collection Data ===>", collectionData);
         // setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -101,7 +102,6 @@ const Panel = ({
       </ScrollLock>
     );
   } else if (panelVisibility === true && panelType === "collection") {
-    console.log(`Collection data ===>`, collectionData);
     return (
       <ScrollLock>
         <div className="panel-wrapper">
@@ -116,31 +116,49 @@ const Panel = ({
           <div className="panel-right">
             <h3>My collection</h3>
 
-            <div className="collection-list">
-              {collectionData.map((collectionItem, index) => {
-                return (
-                  <div>
-                    <div className="comic" key={collectionItem.collection_name}>
-                      <img
-                        onClick={async () => {
-                          // Delete item
-                          try {
-                            await axios.delete(
-                              `https://almost-marvel.herokuapp.com/collection/delete?collection_name=${collectionItem.collection_name}`
-                            );
-                          } catch (error) {
-                            console.log(error.message);
-                          }
-                        }}
-                        src={collectionItem.collection_img}
-                        alt={collectionItem.collection_name}
-                      />
-                      <p>{collectionItem.collection_name}</p>
+            {collectionData !== undefined ? (
+              <div className="collection-list">
+                {collectionData.map((collectionItem, index) => {
+                  return (
+                    <div>
+                      <div
+                        className="collection"
+                        key={collectionItem.collection_name}
+                      >
+                        <img
+                          src={collectionItem.collection_img}
+                          alt={collectionItem.collection_name}
+                        />
+                        <p>{collectionItem.collection_name}</p>
+                        <div
+                          className="add-collection"
+                          value="Add to collection"
+                          onClick={async () => {
+                            // Delete item
+                            try {
+                              await axios.delete(
+                                `https://almost-marvel.herokuapp.com/collection/delete?collection_name=${collectionItem.collection_name}`
+                              );
+                            } catch (error) {
+                              console.log(error.message);
+                            }
+                          }}
+                        >
+                          <div className="add-button">
+                            <div className="plus"></div>
+                            <div className="plus"></div>
+
+                            <span>Remove from collection</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>Your collection is empty</p>
+            )}
           </div>
         </div>
       </ScrollLock>
